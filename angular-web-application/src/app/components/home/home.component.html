@@ -1,0 +1,86 @@
+
+<app-header></app-header>
+<div class="home-container">
+    <div class="all-movies">
+        <div class="trending-movies">
+            <div class="top">
+                <h4>Trending Movies</h4>
+                <div class="view-all">View All</div>
+            </div>
+            <div class="movies-thumbnail">
+                <div class="movie" *ngFor="let movie of trendingMovies">
+                    <div class="cover" (click)="open(content,movie)">
+                        <img [src]="movie.cover" alt="">
+                        <div>{{count}}</div>
+                    </div>
+                    <div class="detail">
+                        <div class="name">{{ movie.name }}</div>
+                        <div class="rating">
+                            <ngb-rating [(rate)]="movie.rating" [readonly]="true" [max]="5"></ngb-rating>
+                            <!-- <div>{{count}}</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="theatre-movies">
+            <div class="top">
+                <h4>Popular in Theatres</h4>
+                <div class="view-all">View All</div>
+            </div>
+            <div class="movies-thumbnail">
+                <div class="movie" *ngFor="let movie of theaterMovies">
+                    <div class="cover" (click)="open(content,movie)">
+                        <img [src]="movie.cover" alt="not show">
+                    </div>
+                    <div class="detail">
+                        <div class="name">{{ movie.name }}</div>
+                        <div class="rating">
+                            <ngb-rating [(rate)]="movie.rating" [readonly]="true" [max]="5"></ngb-rating>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popular-movies">
+        <h4>All Time Popular</h4>
+        <div class="movie" *ngFor="let movie of popularMovies">
+            <div class="detail">
+                <div class="name">{{ movie.name }}</div>
+                <div class="rating">
+                    <span class="rating-value" style="margin-top: 5px;">{{ movie.rating }}</span>
+                    <ngb-rating [(rate)]="movie.rating" [readonly]="true" [max]="5"></ngb-rating>
+                </div>
+            </div>
+        </div>
+        <div class="view-all">View All</div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title" style="color: blueviolet;">{{selectedMovies.name}}</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<div class="rating-form">
+            <div class="form-group">
+                <label for="uname">Name</label>
+                <input type="text" [(ngModel)]="reviewData.name" name="uname" class="form-control"  required="true">
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <ngb-rating [(rate)]="reviewData.rating" [readonly]="false" [max]="5"></ngb-rating>
+            </div>
+            <div class="form-group">
+                <label for="review">Review</label>
+                <textarea type="text" [(ngModel)]="reviewData.reviews" name="review" class="form-control"></textarea>
+            </div>
+      </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-secondary" (click)="submitRating(c)">Submit</button>
+	</div>
+</ng-template>
+

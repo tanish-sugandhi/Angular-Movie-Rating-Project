@@ -1,0 +1,35 @@
+<div class="login-container">
+    <!-- <img class="film" src="https://github.com/freelancer-surender/Angular---Zero-to-Hero/blob/master/final-project/src/assets/images/film.png?raw=true" alt="profile"> -->
+    <div class="logo">
+        Rotten Potatoes
+    </div>
+    <div class="desc">
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolorum animi repellendus neque. Animi laborum ullam tempore deleniti eaque reprehenderit, nam quae placeat. Repellendus reprehenderit sequi iste veniam nihil eius.
+    </div>
+    <div class="login-form">
+       <div class="form-group">
+            <label for="uname">Username</label>
+             <input type="text" name="uname" class="form-control" [(ngModel)]="username" />
+             @if(username.length===0)
+             {
+                <div class="error-msg">{{errorMsg}}</div>
+             }
+       </div>
+       <div class="form-group">
+        <label for="pword">Password</label>
+        <input type="password" name="pword" class="form-control" [(ngModel)]="password" />
+        <!-- @if(password.length===0)
+             {
+                <div class="error-msg">{{errorPassword}}</div>
+             } -->
+     </div>
+     <div class="btn-container">
+      @if(password.length===0)
+      {
+         <div class="error-msg">{{errorPassword}}</div>
+      }
+          <!-- <div>{{errorPassword}}</div> -->
+        <button class="btn btn-dark" (click)="login()">Login</button>
+     </div>
+    </div>
+</div>
